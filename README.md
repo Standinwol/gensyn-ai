@@ -8,8 +8,7 @@
     - RTX 4090
     - A100
     - H100
--  Note: You can run the node without a GPU using CPU-only mode (details in the docker-compose.yaml section).
--  
+-  **Note**: You can run the node without a GPU using CPU-only mode (details in the docker-compose.yaml section).
 ---
 
 ## Install Dependencies
@@ -118,12 +117,12 @@ services:
       interval: 30s
       retries: 3
 ```
-* GPU Note: If you lack an NVIDIA GPU or the NVIDIA Container Runtime, remove the `runtime: nvidia` line under `swarm_node` to run on CPU.
+* **GPU Note**: If you don't have an NVIDIA GPU or the NVIDIA Container Runtime, remove the `runtime: nvidia` line under `swarm_node` to run on CPU.
 
 ### What Each Service Does:
-* otel-collector: Gathers telemetry data (metrics, traces).
-* swarm_node: The core RL Swarm node connecting to the network.
-* fastapi: The web UI dashboard for monitoring.
+* **otel-collector**: Gathers telemetry data (metrics, traces).
+* **swarm_node**: The core RL Swarm node connecting to the network.
+* **fastapi**: The web UI dashboard for monitoring.
 
 ---
 
@@ -132,26 +131,26 @@ Start the services with:
 ```
 docker compose up --build -d && docker compose logs -f
 ```
-* Progress: The first run may take time due to image downloads. Look for this log to confirm your node joined the swarm
+* **Note**: The first run may take time due to image downloads. Look for this log to confirm your node joined the swarm
 
 ![Screenshot_654](https://github.com/user-attachments/assets/56243405-85ca-41ae-8591-2e61631835da)
 
-* Exit Logs: Press `Ctrl+C`
+* **Exit Logs**: Press `Ctrl+C`
 
 ---
 
 ## Check logs
-* RL Swarm node:
+* **RL Swarm node:**
 ```
 docker-compose logs -f swarm_node
 ```
 
-* Web UI:
+* **Web UI:**
 ```
 docker-compose logs -f fastapi
 ```
 
-* Telemetry Collector:
+* **Telemetry Collector:**
 ```
 docker-compose logs -f otel-collector
 ```
