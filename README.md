@@ -117,7 +117,7 @@ services:
       interval: 30s
       retries: 3
 ```
-* **GPU Note**: If you don't have an NVIDIA GPU or the NVIDIA Container Runtime, remove the `runtime: nvidia` line under `swarm_node` to run on CPU.
+* **GPU/CPU Note**: If you don't have an NVIDIA GPU or the NVIDIA Container Runtime, remove the `runtime: nvidia` line under `swarm_node` to run on **CPU**.
 
 ### What Each Service Does:
 * **otel-collector**: Gathers telemetry data (metrics, traces).
