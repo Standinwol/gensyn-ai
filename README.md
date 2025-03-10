@@ -13,16 +13,16 @@
 
 ## Install Dependencies
 **1. Update System Packages**
-```
+```bash
 sudo apt-get update && sudo apt-get upgrade -y
 ```
 **2. Install General Utilities and Tools**
-```
+```bash
 sudo apt install curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev  -y
 ```
 
 **3. Install Docker**
-```
+```bash
 # Remove old Docker installations
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
 
@@ -51,14 +51,14 @@ sudo usermod -aG docker $USER
 ```
 
 **4. Install Python**
-```
+```bash
 sudo apt-get install python3 python3-pip
 ```
 
 ---
 
 ## Clone the Repository
-```
+```bash
 git clone https://github.com/gensyn-ai/rl-swarm/
 cd rl-swarm
 ```
@@ -68,12 +68,12 @@ cd rl-swarm
 ## Create `docker-compose.yaml`
 This file defines the services: the RL Swarm node, telemetry collector, and web UI.
 1. Create the file:
-```
+```bash
 nano docker-compose.yaml
 ```
 
 2. Paste the following configuration:
-```
+```bash
 version: '3'
 
 services:
@@ -128,7 +128,7 @@ services:
 
 ## Run RL Swarm Node + Web UI Dashboard
 Start the services with:
-```
+```bash
 docker compose up --build -d && docker compose logs -f
 ```
 * **Note**: The first run may take time due to image downloads. Look for this log to confirm your node joined the swarm
@@ -141,17 +141,17 @@ docker compose up --build -d && docker compose logs -f
 
 ## Check logs
 * **RL Swarm node:**
-```
+```bash
 docker-compose logs -f swarm_node
 ```
 
 * **Web UI:**
-```
+```bash
 docker-compose logs -f fastapi
 ```
 
 * **Telemetry Collector:**
-```
+```bash
 docker-compose logs -f otel-collector
 ```
 
