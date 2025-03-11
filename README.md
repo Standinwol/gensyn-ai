@@ -69,7 +69,7 @@ cd rl-swarm
 This file defines the services: the RL Swarm node, telemetry collector, and web UI.
 1. Rename the old file:
 ```bash
-mv docker-compose.yaml.old
+mv docker-compose.yaml docker-compose.yaml.old
 ```
 2. Create the new file:
 ```bash
