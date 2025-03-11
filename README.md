@@ -67,12 +67,16 @@ cd rl-swarm
 
 ## Create `docker-compose.yaml`
 This file defines the services: the RL Swarm node, telemetry collector, and web UI.
-1. Create the file:
+1. Rename the old file:
+```bash
+mv docker-compose.yaml.old
+```
+2. Create the new file:
 ```bash
 nano docker-compose.yaml
 ```
 
-2. Paste the following configuration:
+3. Paste the following configuration:
 ```bash
 version: '3'
 
