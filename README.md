@@ -199,7 +199,7 @@ The guide might need a modification cuz mine is not fully operating yet and I'm 
 
 ---
 ## Run on Hyperbolic GPUs
-* To install the node on **Hyperbolic** check this [Guide: Rent & Connect GPU](https://github.com/0xmoei/Hyperbolic-GPU)
+* To install the node on **Hyperbolic** check this [Guide: Rent & Connect to GPU](https://github.com/0xmoei/Hyperbolic-GPU)
 * Add this flag: `-L 3000:localhost:3000` in front of your Hyperbolic's `SSH-command`, this will allow you to access to login page via local system.
 
 ![Screenshot_677](https://github.com/user-attachments/assets/ea4fc4c1-0993-4fa5-b573-33f256bc639b)
