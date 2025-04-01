@@ -176,7 +176,7 @@ ssh -L 3000:localhost:3000 root@Server_IP -p SSH_PORT
 
 ---
 
-## 7) Run Swarm Dashboard UI
+## 7) Run Swarm Dashboard UI (Optional)
 ```bash
 cd $HOME cd rl-swarm
 ```
@@ -186,6 +186,8 @@ docker compose up -d --build
 Open the dashboard in browser via:
 * Local PC: `0.0.0.0:8080`
 * VPS: `ServerIP:8080`
+
+---
 
 * Official dashboard: https://dashboard.gensyn.ai/
 
