@@ -133,7 +133,7 @@ Press `Y`
 * Local PC: `http://localhost:3000/`
 * VPS: `http://ServerIP:3000/`
 
-**3- ⚠️ If you can't login or no email code received, Forward port**
+**3- ⚠️ If you can't login or no email code received, Forward port:**
 * In windows start menu, Search **Powershell** and open its terminal in your local PC
 * Enter the command below and replace your vps ip with `Server_IP` and your vps port(.eg 22) with `SSH_PORT`
 ```
