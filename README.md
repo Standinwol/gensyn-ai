@@ -1,24 +1,28 @@
-# Run RL Swarm Node
-**RL Swarm** is a fully open-source framework developed by **GensynAI** for building reinforcement learning (RL) training swarms over the internet. This guide walks you through setting up an RL Swarm node and a web UI dashboard to monitor swarm activity.
+# Run RL Swarm Testnet Node
+RL Swarm is a fully open-source framework developed by GensynAI for building reinforcement learning (RL) training swarms over the internet. This guide walks you through setting up an RL Swarm node and a web UI dashboard to monitor swarm activity.
 
 ## Hardware Requirements
 - CPU: Minimum 16GB RAM (more RAM recommended for larger models or datasets).
+
+OR
+
 - GPU (Optional): Supported CUDA devices for enhanced performance:
     - RTX 3090
     - RTX 4090
     - A100
     - H100
--  **Note**: You can run the node without a GPU using CPU-only mode (details in the docker-compose.yaml section).
+-  **Note**: You can run the node without a GPU using CPU-only mode.
+
 ---
 
-## Install Dependencies
+## 1) Install Dependencies
 **1. Update System Packages**
 ```bash
 sudo apt-get update && sudo apt-get upgrade -y
 ```
 **2. Install General Utilities and Tools**
 ```bash
-sudo apt install curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev  -y
+sudo apt install screen curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev  -y
 ```
 
 **3. Install Docker**
@@ -54,10 +58,51 @@ sudo usermod -aG docker $USER
 ```bash
 sudo apt-get install python3 python3-pip
 ```
+```
+sudo apt install python3.10-venv
+```
+
+**5. Install Node**
+```
+sudo apt-get update
+```
+```
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+```
+```
+sudo apt-get install -y nodejs
+```
+```
+node -v
+```
+```bash
+sudo npm install -g yarn
+```
+```bash
+yarn -v
+```
+
+**6. Install Yarn**
+```bash
+curl -o- -L https://yarnpkg.com/install.sh | sh
+```
+```bash
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+```
+```bash
+source ~/.bashrc
+```
 
 ---
 
-## Clone the Repository
+## 2) Get HuggingFace Access token
+**1- Create account in [HuggingFace](https://huggingface.co/)**
+
+**2- Create an Access Token with `Write` permissions [here](https://huggingface.co/settings/tokens) and save it**
+
+---
+
+## 3) Clone the Repository
 ```bash
 git clone https://github.com/gensyn-ai/rl-swarm/
 cd rl-swarm
@@ -65,120 +110,94 @@ cd rl-swarm
 
 ---
 
-## Create `docker-compose.yaml`
-This file defines the services: the RL Swarm node, telemetry collector, and web UI.
-1. Rename the old file:
+## 4) Run the swarm
+Open a screen to run it in background
 ```bash
-mv docker-compose.yaml docker-compose.yaml.old
+screen -S swarm
 ```
-2. Create the new file:
+Install swarm
 ```bash
-nano docker-compose.yaml
+python3 -m venv .venv
+source .venv/bin/activate
+./run_rl_swarm.sh
 ```
-
-3. Paste the following configuration:
-```bash
-version: '3'
-
-services:
-  otel-collector:
-    image: otel/opentelemetry-collector-contrib:0.120.0
-    ports:
-      - "4317:4317"  # OTLP gRPC
-      - "4318:4318"  # OTLP HTTP
-      - "55679:55679"  # Prometheus metrics (optional)
-    environment:
-      - OTEL_LOG_LEVEL=DEBUG
-
-  swarm_node:
-    image: europe-docker.pkg.dev/gensyn-public-b7d9/public/rl-swarm:v0.0.2
-    command: ./run_hivemind_docker.sh
-    runtime: nvidia  # Enables GPU support; remove if no GPU is available
-    environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
-      - PEER_MULTI_ADDRS=/ip4/38.101.215.13/tcp/30002/p2p/QmQ2gEXoPJg6iMBSUFWGzAabS2VhnzuS782Y637hGjfsRJ
-      - HOST_MULTI_ADDRS=/ip4/0.0.0.0/tcp/38331
-    ports:
-      - "38331:38331"  # Exposes the swarm node's P2P port
-    depends_on:
-      - otel-collector
-
-  fastapi:
-    build:
-      context: .
-      dockerfile: Dockerfile.webserver
-    environment:
-      - OTEL_SERVICE_NAME=rlswarm-fastapi
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
-      - INITIAL_PEERS=/ip4/38.101.215.13/tcp/30002/p2p/QmQ2gEXoPJg6iMBSUFWGzAabS2VhnzuS782Y637hGjfsRJ
-    ports:
-      - "8080:8000"  # Maps port 8080 on the host to 8000 in the container
-    depends_on:
-      - otel-collector
-      - swarm_node
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/api/healthz"]
-      interval: 30s
-      retries: 3
-```
-* **GPU/CPU Note**: If you don't have an NVIDIA GPU or the NVIDIA Container Runtime, remove the `runtime: nvidia` line under `swarm_node` to run on **CPU**.
-
-### What Each Service Does:
-* **otel-collector**: Gathers telemetry data (metrics, traces).
-* **swarm_node**: The core RL Swarm node connecting to the network.
-* **fastapi**: The web UI dashboard for monitoring.
+Press `Y`
 
 ---
 
-## Run RL Swarm Node + Web UI Dashboard
-Start the services with:
-```bash
-docker compose up --build -d && docker compose logs -f
+## 5) Login
+**1- You have to receive `Waiting for userData.json to be created...` in logs**
+
+![image](https://github.com/user-attachments/assets/140f7d32-844f-4cf0-aac4-a91e9a14c1aa)
+
+**2- Open login page in browser**
+* Local PC: `http://localhost:3000/`
+* VPS: `http://ServerIP:3000/`
+
+**3- If you can't login via VPS then, Forward port**
+* In windows start menu, Search **Powershell** and open its terminal in your local PC
+* Enter the command below and replace your vps ip with `Server_IP` and your vps port(.eg 22) with `SSH_PORT`
 ```
-* **Note**: The first run may take time due to image downloads. Look for this log to confirm your node joined the swarm
+ssh -L 3000:localhost:3000 root@Server_IP -p SSH_PORT
+```
+* This prompts you to enter your VPS password, when you enter it, you connect and tunnel to your vps
+* Now go to browser and open `http://localhost:3000/` and login
 
-![Screenshot_654](https://github.com/user-attachments/assets/56243405-85ca-41ae-8591-2e61631835da)
+**4- Login with your preferred method**
 
-* **Exit Logs**: Press `Ctrl+C`
+![image](https://github.com/user-attachments/assets/f33ea530-b15f-4af7-a317-93acd8618a9f)
+
+* After login, your terminal starts installation.
+
+**5- Push models to huggingface**
+* Enter your HuggingFace access token you've created when it prompted
+
+![image](https://github.com/user-attachments/assets/11c3a798-49c2-4a87-9e0b-359f3378c9e2)
 
 ---
 
-## Check logs
-* **RL Swarm node:**
-```bash
-docker-compose logs -f swarm_node
-```
+## 6) Backup
+**1- Node name**
+* Now your node started running, Find your name after word `Hello`, like mine is `whistling hulking armadillo` as in the image below (You can use `CTRL+SHIFT+F` to search Hello in terminal)
 
-* **Web UI:**
-```bash
-docker-compose logs -f fastapi
-```
+![image](https://github.com/user-attachments/assets/a1abdb1a-aa11-407f-8e5b-abe7d0a6b0f3)
 
-* **Telemetry Collector:**
-```bash
-docker-compose logs -f otel-collector
-```
-
-* All Logs: Use `docker-compose logs -f` without a service name.
+**2- Node `.pem` file**
+* Save `swarm.pem` file in this directory: `/root/rl-swarm/`
 
 ---
 
-## Access the Web UI Dashboard
-* VPS: `http://<your-vps-ip>:8080/`
-* Local PC: `http://localhost:8080` or `http://0.0.0.0:8080`
+### Screen commands
+* Minimize: `CTRL` + `A` + `D`
+* Return: `screen -r swarm`
+* Stop and Kill: `screen -XS swarm quit`
 
-![image](https://github.com/user-attachments/assets/5be7755d-bcc9-41d8-ae03-37816002e014)
+---
 
-## Monitoring Your Node
-* The dashboard displays *collective swarm data*, not individual node stats. To track your node:
+## 7) Run Swarm Dashboard UI
+```bash
+cd $HOME cd rl-swarm
+```
+```bash
+docker compose up -d --build
+```
+Open the dashboard in browser via:
+* Local PC: `0.0.0.0:8080`
+* VPS: `ServerIP:8080`
 
-  1- Check the `swarm_node` logs for your node’s unique ID (e.g., `[F-d2042cff-01c9-4801-8ea7-1c1afc29c9b6]`):
-  
-![image](https://github.com/user-attachments/assets/4bc5efa2-c9c3-4bf0-8dab-d21069c89a79)
+* Official dashboard: https://dashboard.gensyn.ai/
 
-  2- Search for this ID in the dashboard data to see your node’s contributions.
+**You can search your Node name in the dashboard after a while when you have done your first training completed**
 
-* **Note**: The dashboard monitors all peers together. The node ID in the logs is likely your identifier but I am keep experimenting to find out more about the node metrics!
+---
 
+The guide might need a modification cuz mine is not fully operating yet and I'm still loading the bar as you see in the pic. If you are like me, let's just wait to see if we are fine
 
+![image](https://github.com/user-attachments/assets/56137526-8155-494b-846d-2bba09036c4f)
 
+---
+## Run on Hyperbolic GPUs
+* To install the node on **Hyperbolic** check this [Guide: Rent & Connect GPU](https://github.com/0xmoei/Hyperbolic-GPU)
+* Add this flag: `-L 3000:localhost:3000` in front of your `SSH-Command`, this will allow you to access to login page via local system.
+
+![Screenshot_677](https://github.com/user-attachments/assets/ea4fc4c1-0993-4fa5-b573-33f256bc639b)
