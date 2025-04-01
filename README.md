@@ -1,4 +1,4 @@
-# Run RL Swarm Testnet Node
+# Run RL Swarm (Testnet) Node
 RL Swarm is a fully open-source framework developed by GensynAI for building reinforcement learning (RL) training swarms over the internet. This guide walks you through setting up an RL Swarm node and a web UI dashboard to monitor swarm activity.
 
 ## Hardware Requirements
