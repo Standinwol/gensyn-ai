@@ -58,10 +58,7 @@ sudo usermod -aG docker $USER
 
 **4. Install Python**
 ```bash
-sudo apt-get install python3 python3-pip
-```
-```
-sudo apt install python3.10-venv
+sudo apt-get install python3 python3-pip python3-venv python3-dev -y
 ```
 
 **5. Install Node**
@@ -86,7 +83,7 @@ yarn -v
 
 **6. Install Yarn**
 ```bash
-curl -o- -L https://yarnpkg.com/install.sh | sh
+curl -o- -L https://yarnpkg.com/install.sh | bash
 ```
 ```bash
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
