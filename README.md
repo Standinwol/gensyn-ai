@@ -191,11 +191,7 @@ Open the dashboard in browser via:
 
 **You can search your Node name in the dashboard after a while when you have done your first training completed**
 
----
-
-The guide might need a modification cuz mine is not fully operating yet and I'm still loading the bar as you see in the pic. If you are like me, let's just wait to see if we are fine
-
-![image](https://github.com/user-attachments/assets/56137526-8155-494b-846d-2bba09036c4f)
+![image](https://github.com/user-attachments/assets/cd8e8cd3-f057-450a-b1a2-a90ca10aa3a6)
 
 ---
 # Run on Hyperbolic GPUs
