@@ -150,8 +150,8 @@ ssh -L 3000:localhost:3000 root@Server_IP -p SSH_PORT
 * After login, your terminal starts installation.
 
 **5- Push models to huggingface**
-* Enter your HuggingFace access token you've created when it prompted
-* This will need 2GB upload bandwidth for each model you train, you can pass it by entering `N`
+* Enter your `HuggingFace` access token you've created when it prompted
+* This will need `2GB` upload bandwidth for each model you train, you can pass it by entering `N`
 
 ![image](https://github.com/user-attachments/assets/11c3a798-49c2-4a87-9e0b-359f3378c9e2)
 
