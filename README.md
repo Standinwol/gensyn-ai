@@ -131,9 +131,9 @@ Press `Y`
 
 **2- Open login page in browser**
 * **Local PC:** `http://localhost:3000/`
-* **VPS users:** Can't get access directly to 3000 port on browser, they have to forward port by entering a command in their local pc powershell command prompt
+* **VPS users:** Do not receive OTP code in emails by logging in 3000 port on browser. You have to forward port by entering a command in their local pc powershell command prompt. (Step 3 of this section)
 
-**3- ⚠️ (only VPS Users) If you can't login or no email code received, Forward port:**
+**3- ⚠️ If you can't login or no email code received, Forward port:**
 * In windows start menu, Search **Powershell** and open its terminal in your local PC
 * Enter the command below and replace your vps ip with `Server_IP` and your vps port(.eg 22) with `SSH_PORT`
 ```
