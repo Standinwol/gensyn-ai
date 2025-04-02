@@ -139,6 +139,7 @@ Press `Y`
 ```
 ssh -L 3000:localhost:3000 root@Server_IP -p SSH_PORT
 ```
+* ⚠️ Make sure you enter the command in your own local Windows Powershell cmd and NOT your VPS terminal.
 * This prompts you to enter your VPS password, when you enter it, you connect and tunnel to your vps
 * Now go to browser and open `http://localhost:3000/` and login
 
