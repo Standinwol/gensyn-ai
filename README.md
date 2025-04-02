@@ -130,8 +130,8 @@ Press `Y`
 ![image](https://github.com/user-attachments/assets/140f7d32-844f-4cf0-aac4-a91e9a14c1aa)
 
 **2- Open login page in browser**
-* Local PC: `http://localhost:3000/`
-* VPS users: Can't get access directly to 3000 port on browser, they have to forward port by entering a command in their local pc powershell command prompt
+* **Local PC:** `http://localhost:3000/`
+* **VPS users:** Can't get access directly to 3000 port on browser, they have to forward port by entering a command in their local pc powershell command prompt
 
 **3- ⚠️ (only VPS Users) If you can't login or no email code received, Forward port:**
 * In windows start menu, Search **Powershell** and open its terminal in your local PC
