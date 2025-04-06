@@ -211,6 +211,15 @@ sftp -P PORT ubuntu@xxxx.hyperbolic.xyz
 
 ---
 
+### Upload
+If you need to upload files from your `local machine` to the `server`.
+* `WSL` & `VPS`: Drag & Drop option.
+* `GPU servers (.eg, Hyperbolic)`:
+
+
+
+---
+
 ### Screen commands
 * Minimize: `CTRL` + `A` + `D`
 * Return: `screen -r swarm`
