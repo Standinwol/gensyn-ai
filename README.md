@@ -158,15 +158,22 @@ ssh -L 3000:localhost:3000 root@Server_IP -p SSH_PORT
 
 ---
 
-**Node Name**
+### Node Name
 * Now your node started running, Find your name after word `Hello`, like mine is `whistling hulking armadillo` as in the image below (You can use `CTRL+SHIFT+F` to search Hello in terminal)
 
 ![image](https://github.com/user-attachments/assets/a1abdb1a-aa11-407f-8e5b-abe7d0a6b0f3)
 
 ---
 
-## 6) Backup
-**You need to Backup `swarm.pem`**
+### Screen commands
+* Minimize: `CTRL` + `A` + `D`
+* Return: `screen -r swarm`
+* Stop and Kill: `screen -XS swarm quit`
+
+---
+
+## Backup
+**You need to backup `swarm.pem`**.
 ### `VPS`:
 Connect your VPS using `Mobaxterm` client to be able to move files to your local system. Back up these files:**
 * `/root/rl-swarm/swarm.pem`
@@ -184,13 +191,16 @@ sftp -P PORT ubuntu@xxxx.hyperbolic.xyz
 ```
 * Replace `ubuntu@xxxx.hyperbolic.xyz` with your given GPU hostname
 * Replace `PORT` with your server port (in your server ssh connection command)
-* `ubuntu` is the user of my hyperbolic gpu, it can be ***anything else*** or `root` if you want to test it out for `vps`
+* `ubuntu` is the user of my hyperbolic gpu, it can be ***anything else*** or it's `root` if you test it out for `vps`
 
 **2- Navigate to the Directory Containing the Files**
  * After connecting, you’ll start in your home directory on the server. Use the `cd` command to move to the directory of your files:
  ```
  cd /home/ubuntu/rl-swarm
  ```
+* This directory of the `swarm.pem` file in gpu server
+* Diretories are different in each provider or method, `/home/ubuntu/rl-swarm` is for hyperbolic gpu server
+
 **3- Download Files**
  * Use the `get` command to download the files to your `local system`. They’ll save to your current local directory unless you specify otherwise:
  ```
@@ -209,14 +219,11 @@ If you need to upload files from your `local machine` to the `server`.
 
 ---
 
-### Screen commands
-* Minimize: `CTRL` + `A` + `D`
-* Return: `screen -r swarm`
-* Stop and Kill: `screen -XS swarm quit`
+
 
 ---
 
-## 7) Run Swarm Dashboard UI (Optional)
+## 7) Optional: Run Swarm Dashboard UI
 ```bash
 cd $HOME cd rl-swarm
 ```
