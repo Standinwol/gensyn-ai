@@ -218,11 +218,12 @@ sftp>
 ### Recovering Backup file (upload)
 If you need to upload files from your `local machine` to the `server`.
 * `WSL` & `VPS`: Drag & Drop option.
-* `GPU servers (.eg, Hyperbolic)`:
 
-**1- Connect to your GPU server using sFTP**
+**`GPU servers (.eg, Hyperbolic)`:**
 
-**2- Upload Files Using the `put` Command:
+1- Connect to your GPU server using sFTP
+
+2- Upload Files Using the `put` Command:
 
 In SFTP, the put command uploads files from your local machine to the server. 
 ```bash
