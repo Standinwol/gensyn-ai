@@ -157,14 +157,57 @@ ssh -L 3000:localhost:3000 root@Server_IP -p SSH_PORT
 
 ---
 
-## 6) Backup
-**1- Node name**
+**Node Name**
 * Now your node started running, Find your name after word `Hello`, like mine is `whistling hulking armadillo` as in the image below (You can use `CTRL+SHIFT+F` to search Hello in terminal)
 
 ![image](https://github.com/user-attachments/assets/a1abdb1a-aa11-407f-8e5b-abe7d0a6b0f3)
 
-**2- Node `.pem` file**
-* Save `swarm.pem` file in this directory: `/root/rl-swarm/`
+---
+
+## 6) Backup
+**You need to Backup `swarm.pem` `userData.json` `userApiKey.json` files.**
+### `VPS`:
+Connect your VPS using `Mobaxterm` client to be able to move files to your local system. Back up these files:**
+* `/root/rl-swarm/swarm.pem`
+* `/root/rl-swarm/modal-login/temp-data/userData.json`
+* `/root/rl-swarm/modal-login/temp-data/userApiKey.json`
+
+### `WSL`:
+Search `\\wsl.localhost` in your ***Windows Explorer*** to see your Ubuntu directory. Your main directories are as follows:
+* If installed via a username: `\\wsl.localhost\Ubuntu\home\<your_username>`
+* If installed via root: `\\wsl.localhost\Ubuntu\root`
+* Look for `rl-swarm/swarm.pem` , `rl-swarm/modal-login/temp-data/userData.json`, `rl-swarm/modal-login/temp-data/userApiKey.json`
+
+### `GPU servers (.eg, Hyperbolic)`:
+**1- Connect to your GPU server by entering this command in `Windows PowerShell`**
+```
+sftp -P PORT ubuntu@xxxx.hyperbolic.xyz
+```
+* Replace `ubuntu@xxxx.hyperbolic.xyz` with your given GPU hostname
+* Replace `PORT` with your server port (in your server ssh connection command)
+
+**2- Navigate to the Directory Containing the Files**
+ * After connecting, you’ll start in your home directory on the server. Use the `cd` command to move to the directory of your files:
+ ```
+ cd /home/ubuntu/rl-swarm/modal-login/temp-data
+ ```
+**3- Download Files**
+ * Use the `get` command to download the files to your `local system`. They’ll save to your current local directory unless you specify otherwise:
+ ```
+ get userApiKey.json
+ get userData.json
+ ```
+**4- Download the `swarm.pem` File**
+ * Navigate to its directory:
+ ```
+ cd
+ cd /home/ubuntu/rl-swarm
+ ```
+ * Then download it:
+ ```bash
+ get swarm.pem
+ ```
+* You can now type `exit` to close connection. the files are in the main directory of your `Powershell` or `WSL` where you entered the first SFTP command
 
 ---
 
