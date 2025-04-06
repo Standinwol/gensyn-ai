@@ -103,7 +103,7 @@ source ~/.bashrc
 
 ## 3) Clone the Repository
 ```bash
-git clone https://github.com/gensyn-ai/rl-swarm/
+git clone https://github.com/0xmoei/rl-swarm
 cd rl-swarm
 ```
 
