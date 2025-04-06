@@ -185,7 +185,7 @@ Search `\\wsl.localhost` in your ***Windows Explorer*** to see your Ubuntu direc
 * Look for `rl-swarm/swarm.pem`
 
 ### `GPU servers (.eg, Hyperbolic)`:
-**1- Connect to your GPU server by entering this command in `Windows PowerShell`**
+**1- Connect to your GPU server by entering this command in `Windows PowerShell` terminal**
 ```
 sftp -P PORT ubuntu@xxxx.hyperbolic.xyz
 ```
@@ -193,29 +193,41 @@ sftp -P PORT ubuntu@xxxx.hyperbolic.xyz
 * Replace `PORT` with your server port (in your server ssh connection command)
 * `ubuntu` is the user of my hyperbolic gpu, it can be ***anything else*** or it's `root` if you test it out for `vps`
 
+Once connected, you’ll see the SFTP prompt:
+```
+sftp>
+```
+
 **2- Navigate to the Directory Containing the Files**
  * After connecting, you’ll start in your home directory on the server. Use the `cd` command to move to the directory of your files:
  ```
  cd /home/ubuntu/rl-swarm
  ```
-* This directory of the `swarm.pem` file in gpu server
-* Diretories are different in each provider or method, `/home/ubuntu/rl-swarm` is for hyperbolic gpu server
 
 **3- Download Files**
  * Use the `get` command to download the files to your `local system`. They’ll save to your current local directory unless you specify otherwise:
  ```
  get swarm.pem
  ```
-* You can now type `exit` to close connection. the files are in the main directory of your `Powershell` or `WSL` where you entered the first SFTP command
+* Downloaded file is in the main directory of your `Powershell` or `WSL` where you entered the sFTP command.
+  * If entered sftp command in `Porwershell`, the `swarm.pem` file might be in `C:\Users\<pc-username>`.
+* You can now type `exit` to close connection. The files are in the main directory of your `Powershell` or `WSL` where you entered the first SFTP command.
 
 ---
 
-### Upload
+### Recovering Backup file (upload)
 If you need to upload files from your `local machine` to the `server`.
 * `WSL` & `VPS`: Drag & Drop option.
 * `GPU servers (.eg, Hyperbolic)`:
 
+**1- Connect to your GPU server using sFTP**
 
+**2- Upload Files Using the `put` Command:
+
+In SFTP, the put command uploads files from your local machine to the server. 
+```bash
+put swarm-test.pem /home/ubuntu/rl-swarm/swarm.pem
+```
 
 ---
 
