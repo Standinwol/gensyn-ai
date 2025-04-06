@@ -13,6 +13,7 @@ OR
     - RTX 4090
     - A100
     - H100
+    > I recommend GPUs with >=24GB vRAM.
 -  **Note**: You can run the node without a GPU using CPU-only mode.
 
 ---
