@@ -237,17 +237,19 @@ Search you `Node ID` here with `/check` here: https://t.me/gensyntrackbot
 ### ⚠️ Upgrade viem & Node version in Login Page
 1- Modify: `package.json`
 ```bash
-nano rl-swarm/modal-login/package.json
+cd rl-swarm
+nano modal-login/package.json
 ```
 * Update: `"viem":` to `"2.25.0"`
 
 2- Upgrade
 ```console
-cd /root/rl-swarm/modal-login/
+cd
+cd rl-swarm/modal-login/
 yarn install
 
 yarn upgrade && yarn add next@latest && yarn add viem@latest
 
-cd /root/rl-swarm
+cd && cd rl-swarm
 ```
 
