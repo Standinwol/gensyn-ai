@@ -255,21 +255,22 @@ nano modal-login/package.json
 
 2- Upgrade
 ```bash
-cd && cd rl-swarm/modal-login/
+cd rl-swarm
+cd modal-login
 yarn install
 
 yarn upgrade && yarn add next@latest && yarn add viem@latest
 
-cd && cd rl-swarm
+cd ..
 ```
 
 ### ⚠️ CPU-only Users: Ran out of input
 Navigate:
 ```
-cd && cd rl-swarm/hivemind_exp/configs/mac
+cd rl-swarm
 ```
 Edit:
 ```
-nano grpo-qwen-2.5-0.5b-deepseek-r1.yaml
+nano hivemind_exp/configs/mac/grpo-qwen-2.5-0.5b-deepseek-r1.yaml
 ```
 * Lower `max_steps` to `5`
