@@ -244,8 +244,7 @@ nano modal-login/package.json
 
 2- Upgrade
 ```bash
-cd
-cd rl-swarm/modal-login/
+cd && cd rl-swarm/modal-login/
 yarn install
 
 yarn upgrade && yarn add next@latest && yarn add viem@latest
