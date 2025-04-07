@@ -212,6 +212,17 @@ put swarm-test.pem /home/ubuntu/rl-swarm/swarm.pem
 ---
 
 # Run on Vast.ai GPUs
+* 1- Register in [Vast.ai](https://cloud.vast.ai/?ref_id=228875)
+* 2- Create ssh key in your local system (If you don't have already) with this [Guide: step 1-5](https://github.com/0xmoei/Hyperbolic-GPU)
+* 3- Paste SSH public key to `Setting > SSH Keys` [here](https://cloud.vast.ai/account/)
+* 4- Select Pytorch(Vast) template [here](https://cloud.vast.ai/templates/)
+* 5- Choose a supported GPU (I recommend >=24GB Per-GPU vRAM)
+* 6- Increase `Disk Space` slidebar to `200GB`
+* 7- Top-up with credits and rent it.
+* 8- Go to [instances](https://cloud.vast.ai/instances/), refresh the page, click on `key` button
+* 9- Create an ssh key,
+* 10- Copy SSH Command, and Replace `-L 3000:localhost:3000` in front of the command.
+* 11- Enter the command in `Windows Powershell` and run it
 
 ---
 
