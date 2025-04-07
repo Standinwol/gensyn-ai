@@ -243,7 +243,7 @@ nano modal-login/package.json
 * Update: `"viem":` to `"2.25.0"`
 
 2- Upgrade
-```console
+```bash
 cd
 cd rl-swarm/modal-login/
 yarn install
