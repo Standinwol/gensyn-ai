@@ -252,3 +252,13 @@ yarn upgrade && yarn add next@latest && yarn add viem@latest
 cd && cd rl-swarm
 ```
 
+### ⚠️ CPU-only Users: Ran out of input
+Navigate:
+```
+cd && cd rl-swarm/hivemind_exp/configs/mac
+```
+Edit:
+```
+nano grpo-qwen-2.5-0.5b-deepseek-r1.yaml
+```
+* Lower `max_steps` to `5`
