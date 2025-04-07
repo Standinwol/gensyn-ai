@@ -28,41 +28,12 @@ sudo apt-get update && sudo apt-get upgrade -y
 sudo apt install screen curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev  -y
 ```
 
-**3. Install Docker**
-```bash
-# Remove old Docker installations
-for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
-
-# Add Docker repository
-sudo apt-get update
-sudo apt-get install ca-certificates curl gnupg
-sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
-
-echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-# Install Docker
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-# Test Docker
-sudo docker run hello-world
-```
-* Tip: To run Docker without sudo, add your user to the Docker group:
-```bash
-sudo usermod -aG docker $USER
-```
-
-**4. Install Python**
+**3. Install Python**
 ```bash
 sudo apt-get install python3 python3-pip python3-venv python3-dev -y
 ```
 
-**5. Install Node**
+**4. Install Node**
 ```
 sudo apt-get update
 ```
@@ -82,7 +53,7 @@ sudo npm install -g yarn
 yarn -v
 ```
 
-**6. Install Yarn**
+**5. Install Yarn**
 ```bash
 curl -o- -L https://yarnpkg.com/install.sh | bash
 ```
@@ -232,31 +203,6 @@ put swarm-test.pem /home/ubuntu/rl-swarm/swarm.pem
 
 ---
 
-
-
----
-
-## 7) Optional: Run Swarm Dashboard UI
-```bash
-cd $HOME cd rl-swarm
-```
-```bash
-docker compose up -d --build
-```
-Open the dashboard in browser via:
-* Local PC: `0.0.0.0:8080`
-* VPS: `ServerIP:8080`
-
----
-
-* Official dashboard: https://dashboard.gensyn.ai/
-
-**You can search your Node name in the dashboard after a while when you have done your first training completed**
-
-![image](https://github.com/user-attachments/assets/cd8e8cd3-f057-450a-b1a2-a90ca10aa3a6)
-
----
-
 # Run on Hyperbolic GPUs
 * To install the node on **Hyperbolic** check this [Guide: Rent & Connect to GPU](https://github.com/0xmoei/Hyperbolic-GPU)
 * Add this flag: `-L 3000:localhost:3000` in front of your Hyperbolic's `SSH-command`, this will allow you to access to login page via local system.
@@ -267,4 +213,41 @@ Open the dashboard in browser via:
 
 # Run on Vast.ai GPUs
 
+---
+
+# Node Health
+### Official Dashboard
+* Top 100 round-participants: https://dashboard.gensyn.ai/
+
+![image](https://github.com/user-attachments/assets/cd8e8cd3-f057-450a-b1a2-a90ca10aa3a6)
+
+### Telegram Bot
+Search you `Node ID` here with `/check` here: https://t.me/gensyntrackbot 
+* `Node-ID` is near your Node name
+
+![image](https://github.com/user-attachments/assets/2946ddf4-f6ef-4201-b6a0-cb5f16fb4cec)
+
+* ⚠️ If receiving `EVM Wallet: 0x0000000000000000000000000000000000000000`, your `onchain-participation` is not being tracked and you have to Install with `New Email` and ***Delete old `swarm.pem`***
+
+![image](https://github.com/user-attachments/assets/8852d3b3-cb13-473e-863f-f4cbe3d0abdd)
+
+---
+# Troubleshooting:
+
+### ⚠️ Upgrade viem & Node version in Login Page
+1- Modify: `package.json`
+```bash
+nano rl-swarm/modal-login/package.json
+```
+* Update: `"viem":` to `"2.25.0"`
+
+2- Upgrade
+```console
+cd /root/rl-swarm/modal-login/
+yarn install
+
+yarn upgrade && yarn add next@latest && yarn add viem@latest
+
+cd /root/rl-swarm
+```
 
