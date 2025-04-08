@@ -198,7 +198,7 @@ If you need to upload files from your `local machine` to the `server`.
 
 In SFTP, the put command uploads files from your local machine to the server. 
 ```bash
-put swarm-test.pem /home/ubuntu/rl-swarm/swarm.pem
+put swarm.pem /home/ubuntu/rl-swarm/swarm.pem
 ```
 
 ---
