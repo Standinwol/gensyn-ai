@@ -48,8 +48,7 @@ sudo apt-get update && curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -
 
 ## 3) Clone the Repository
 ```bash
-git clone https://github.com/gensyn-ai/rl-swarm/
-cd rl-swarm
+git clone https://github.com/gensyn-ai/rl-swarm/ && cd rl-swarm
 ```
 
 ---
@@ -61,9 +60,7 @@ screen -S swarm
 ```
 Install swarm
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-./run_rl_swarm.sh
+python3 -m venv .venv && source .venv/bin/activate && ./run_rl_swarm.sh
 ```
 Press `Y`
 
