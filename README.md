@@ -60,7 +60,7 @@ git clone https://github.com/gensyn-ai/rl-swarm/ && cd rl-swarm
 ## 4) Run the swarm
 Open a screen to run it in background
 ```bash
-screen -S swarm
+screen -S gensyn
 ```
 Install swarm
 ```bash
