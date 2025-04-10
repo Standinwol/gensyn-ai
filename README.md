@@ -37,7 +37,7 @@ sudo apt-get install python3 python3-pip python3-venv python3-dev -y
 ```bash
 sudo apt-get update && curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - && sudo apt-get install -y nodejs && curl -o- -L https://yarnpkg.com/install.sh | bash && echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
 ```
-**5. Install Ngrok
+**5. Install Ngrok**
 ```bash
 sudo snap install ngrok
 ```
